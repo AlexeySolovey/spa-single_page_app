@@ -1,0 +1,55 @@
+%btn {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px 25px;
+    border: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: $main-black;
+    background: $main-pink;
+    transition: all 600ms ease;
+
+    &:hover {
+        background: #cc7979;
+    }
+}
+
+%container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+%form {
+    padding: 20px 50px;
+    border: 3px solid $main-black; 
+    width: 40%;
+    margin: 100px auto;
+}
+
+%input {
+    display: block;
+    width: 80%;
+    padding: 15px 25px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border: 3px solid $main-black;
+    font-size: 16px;
+}
+
+%modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0px;left: 0px;
+    // display: none;
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background: rgba($color: #000, $alpha: 0.5);
+    }
+}
