@@ -145,7 +145,7 @@ main {
 
 .reg-block {
     padding: 20px;
-    display: none;
+    display: block;
 
     .btns {
         width: 100%;
@@ -178,5 +178,8 @@ main {
         }
 
         button {@extend %btn;}
+    }
+    .login-form, .register-form{
+        display: none;
     }
 }
