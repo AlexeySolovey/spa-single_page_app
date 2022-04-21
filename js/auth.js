@@ -1,7 +1,7 @@
 const loginForm = document.querySelector(".login-form");
 const registerForm = document.querySelector(".register-form");
 const mainBlock = document.querySelector("main");
-const port = "link";
+const port = "http://localhost:3000/";
 function goToLogin() {
     loginForm.style.display = "block";
     registerForm.style.display = "none";
@@ -34,7 +34,6 @@ function register(e) {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           if (data.status === "success") {
             localStorage.setItem("token", data.token);
             window.location.href = "index.html";
@@ -64,7 +63,6 @@ function register(e) {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         if (data.status === "success") {
           localStorage.setItem("token", data.token);
           window.location.href = "index.html";
@@ -78,11 +76,9 @@ function register(e) {
   }
 
   function logout(e) {
-    if (localStorage.getItem("token", data.token)) {
-      localStorage.removeItem("token", data.token);
-      window.location.href = "index.html";
-      window.document.querySelector("log-out-btn").style.display("none");
-      window.document.querySelector("sign-up-btn").style.display("block");
-      window.document.querySelector("sign-in-btn").style.display("block");
-    } 
+    localStorage.removeItem("token", data.token);
+    window.location.href = "index.html";
+    window.document.querySelector("log-out-btn").style.display("none");
+    window.document.querySelector("sign-up-btn").style.display("block");
+    window.document.querySelector("sign-in-btn").style.display("block");
   }
