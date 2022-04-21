@@ -13,6 +13,7 @@ function goToRegister() {
     registerForm.style.display = "block";
     mainBlock.style.display = "none";
 }
+
 function register(e) {
     e.preventDefault();
     const dataRequest = {
@@ -51,7 +52,7 @@ function register(e) {
       },
     };
   
-    fetch(port + "sign-in", {
+    fetch(port + "log-in", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -67,8 +68,21 @@ function register(e) {
         if (data.status === "success") {
           localStorage.setItem("token", data.token);
           window.location.href = "index.html";
+          window.document.querySelector("log-out-btn").style.display("block");
+          window.document.querySelector("sign-up-btn").style.display("none");
+          window.document.querySelector("sign-in-btn").style.display("none");
         } else {
           alert(data.message);
         }
       });
+  }
+
+  function logout(e) {
+    if (localStorage.getItem("token", data.token)) {
+      localStorage.removeItem("token", data.token);
+      window.location.href = "index.html";
+      window.document.querySelector("log-out-btn").style.display("none");
+      window.document.querySelector("sign-up-btn").style.display("block");
+      window.document.querySelector("sign-in-btn").style.display("block");
+    } 
   }
