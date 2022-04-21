@@ -1,11 +1,13 @@
 const express = require('express');
-const authRouter = require('./routes/authRoutes');
+const authRouter = require('./routes/authRouter');
+const productsRouter = require('./routes/productsRouter');
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/api/auth', authRouter);
+app.use('/auth', authRouter);
+app.use('/products', productsRouter);
 
 app.get('/', (req, res) => {
     res.send('SPA');
