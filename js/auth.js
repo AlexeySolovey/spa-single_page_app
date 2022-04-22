@@ -17,12 +17,10 @@ function goToRegister() {
 function register(e) {
     e.preventDefault();
     const dataRequest = {
-      credentials: {
         email: registerForm[0].value,
         password: registerForm[1].value
-      },
     };
-    fetch(port + "sign-up", {
+    fetch(port + "auth/signup", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -35,7 +33,7 @@ function register(e) {
         })
         .then((data) => {
           if (data.status === "success") {
-            localStorage.setItem("token", data.token);
+            localStorage.setItem("userToken", data.token);
             window.location.href = "index.html";
           } else {
             alert(data.message);
@@ -45,13 +43,11 @@ function register(e) {
   function login(e) {
     e.preventDefault();
     const dataRequest = {
-      credentials: {
-        email: loginForm[0].value,
-        password: loginForm[1].value
-      },
+      email: loginForm[0].value,
+      password: loginForm[1].value
     };
   
-    fetch(port + "log-in", {
+    fetch(port + "auth/login", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -64,11 +60,11 @@ function register(e) {
       })
       .then((data) => {
         if (data.status === "success") {
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("userToken", data.token);
           window.location.href = "index.html";
-          window.document.querySelector("log-out-btn").style.display("block");
-          window.document.querySelector("sign-up-btn").style.display("none");
-          window.document.querySelector("sign-in-btn").style.display("none");
+          window.document.querySelector("#logout-btn").style.display = "inline-block";
+          window.document.querySelector("#goToLogin-btn").style.display = "none";
+          window.document.querySelector("#goToReg-btn").style.display = "none";
         } else {
           alert(data.message);
         }
@@ -76,9 +72,20 @@ function register(e) {
   }
 
   function logout(e) {
-    localStorage.removeItem("token", data.token);
-    window.location.href = "index.html";
-    window.document.querySelector("log-out-btn").style.display("none");
-    window.document.querySelector("sign-up-btn").style.display("block");
-    window.document.querySelector("sign-in-btn").style.display("block");
+    localStorage.removeItem("userToken");
+    window.document.querySelector("#logout-btn").style.display = "none";
+    window.document.querySelector("#goToLogin-btn").style.display = "inline-block";
+    window.document.querySelector("#goToReg-btn").style.display = "inline-block";
   }
+  function isTocken(){
+    if(localStorage.getItem("userToken")){
+      window.document.querySelector("#logout-btn").style.display = "inline-block";
+      window.document.querySelector("#goToLogin-btn").style.display = "none";
+      window.document.querySelector("#goToReg-btn").style.display = "none";
+    } else {
+      window.document.querySelector("#logout-btn").style.display = "none";
+      window.document.querySelector("#goToLogin-btn").style.display = "inline-block";
+      window.document.querySelector("#goToReg-btn").style.display = "inline-block";
+    }
+  }
+  isTocken();
