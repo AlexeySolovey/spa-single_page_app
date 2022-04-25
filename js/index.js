@@ -37,14 +37,14 @@ getResource()
         services.map ((el, i) => { 
             let item = document.createElement('div');
             item.classList.add('service');
-            // item.classList.add('col-3');
+            item.classList.add('col-3');
             item.setAttribute('id', i);
 
             item.innerHTML = `
             <div class="img"><img src=${el.img} alt=""></div>
             <h5>${el.title}</h5>
             <p>${el.desc}</p>
-            <button onclick="onBook('${el.title}')">Book</button>
+            <button onclick="onBook('${el.title}')" class="btn btn-primary">Book</button>
         `;
         items.push(item);
         });
@@ -58,7 +58,7 @@ getResource()
 })
 
 ////////////////////////////////////////////////
-localStorage.setItem('email', 'mylogin@gmail');
+// localStorage.setItem('email', 'mylogin@gmail');
 
 //Function relates to main page.
 function onBook (title) {

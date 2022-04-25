@@ -57,7 +57,8 @@ header {
 
 main {
     .img-block {
-        background: url('../resources/beauty-bg.png');
+        // @extend %container;
+        background: url('../resources/beauty-bg.png') center center/cover no-repeat;
         display: flex;
         align-items: center;
         width: 100%;
@@ -66,7 +67,7 @@ main {
 
         .desc {
             width: 40%;
-            margin-left: 50px;
+            margin-left: 8%;
 
             h2 {font-size: 24px; color: $main-black;}
             p {
@@ -95,20 +96,16 @@ main {
 
     .main-content {
         @extend %container;
-
         .items {
             padding: 30px 0;
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
             .service {
-                width: 25%;
                 padding: 30px;
                 border: 2px solid $main-grey;
                 border-radius: 10px;
                 margin-bottom: 20px;
                 transition: all 600ms ease;
-
+                margin: 10px 4%;
                 .img {width: 15%; margin: 0 auto;}
                 h5 {
                     margin-top: 20px;
@@ -125,7 +122,7 @@ main {
 
                 button {
                     @extend %btn;
-                    width: 70%;
+                    width: 100%;
                 }
 
                 &:hover {background: whitesmoke; transform: scale(1.1);}
@@ -135,7 +132,6 @@ main {
 
     .modal-service {
         @extend %modal;
-        /////////////
         display: none;
         .wrapper form {
             @extend %form;
@@ -145,7 +141,6 @@ main {
             .close-modal {color: black; font-size: 20px; text-align: end; cursor: pointer;}
             h5 {text-align: center; font-size: 22px; margin-bottom: 30px;}
             input {@extend %input;}
-            button {@extend %btn;}
             p {text-align: center; font-size: 16px; margin: 10px 0; display: none;}
         }
     }
@@ -164,7 +159,7 @@ main {
             h5 {text-align: center; font-size: 22px; margin-bottom: 30px;}
             .empty {color: $main-grey; list-style: none; text-align: center;}
             .basket-item {color: $main-black; list-style: none; text-align: center; margin-bottom: 10px;}
-            button {@extend %btn; margin-top: 20px;}
+            button { margin-top: 20px;}
             p {text-align: center; font-size: 16px; margin: 10px 0; display: none;}
         }
     }
@@ -188,7 +183,7 @@ main {
             @extend %input;
         }
 
-        button {@extend %btn;}
+        button {width: 100%;}
         h2 {
             margin-bottom: 20px;
             text-align: center;
