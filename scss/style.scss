@@ -29,10 +29,33 @@ header {
             transform: translateY(-10px);
         }
     }
+    nav {
+        display: flex;
+        align-items: center;
+        ul, li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            display: inline-block;
+            margin-right: 24px;
+            &:hover{
+                color: #ee9f9f;
+            }
+            a {
+                font-family: 'Montserrat', sans-serif;
+                transition: .25s;
+                letter-spacing: 0.05em;
+                text-decoration: none;
+                touch-action: manipulation;
+                display: inline-block;
+            }
+        }
+    }
 }
 
 main {
-    // display: none;
     .img-block {
         background: url('../resources/beauty-bg.png');
         display: flex;
@@ -149,23 +172,7 @@ main {
 
 .reg-block {
     padding: 20px;
-    display: none;
-
-    .btns {
-        width: 100%;
-        text-align: end;
-        
-        button {
-            background: none;
-            border: none;
-            text-transform: uppercase;
-            font-weight: 400;
-            font-size: 24px;
-            cursor: pointer;
-            color: $main-grey;
-            margin-right: 20px;
-        }
-    }
+    display: block;
 
     form {
         @extend %form;
@@ -182,5 +189,12 @@ main {
         }
 
         button {@extend %btn;}
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    }
+    .login-form, .register-form{
+        display: none;
     }
 }
