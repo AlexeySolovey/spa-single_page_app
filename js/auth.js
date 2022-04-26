@@ -6,14 +6,21 @@ function goToLogin() {
     loginForm.style.display = "block";
     registerForm.style.display = "none";
     mainBlock.style.display = "none";
+    document.querySelector(".basket").style.display = "none";
 }
   
 function goToRegister() {
     loginForm.style.display = "none";
     registerForm.style.display = "block";
     mainBlock.style.display = "none";
+    document.querySelector(".basket").style.display = "none";
 }
-
+function goToHome() {
+  loginForm.style.display = "none";
+  registerForm.style.display = "none";
+  mainBlock.style.display = "block";
+  document.querySelector(".basket").style.display = "block";
+}
 function register(e) {
     e.preventDefault();
     const dataRequest = {
