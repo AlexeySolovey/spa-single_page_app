@@ -12,6 +12,7 @@ const inputTime = document.querySelector('input[type=time]');
 const onModalError = document.querySelector('p.onError');
 const onModalSuccess = document.querySelectorAll('p.success');
 const orderBtn = document.querySelector('#orderbtn');
+
 var selectedService = {title: null, date: null, time: null, img: null};
 var isEmpty = true;
 let selectedServices = [];
