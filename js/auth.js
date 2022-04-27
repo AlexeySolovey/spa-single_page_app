@@ -69,9 +69,9 @@ function register(e) {
         if (data.status === "success") {
           localStorage.setItem("userToken", data.token);
           window.location.href = "index.html";
-          window.document.querySelector("#logout-btn").style.display = "inline-block";
-          window.document.querySelector("#goToLogin-btn").style.display = "none";
-          window.document.querySelector("#goToReg-btn").style.display = "none";
+          document.querySelector("#logout-btn").style.display = "inline-block";
+          document.querySelector("#goToLogin-btn").style.display = "none";
+          document.querySelector("#goToReg-btn").style.display = "none";
         } else {
           alert(data.message);
         }
@@ -80,19 +80,19 @@ function register(e) {
 
   function logout(e) {
     localStorage.removeItem("userToken");
-    window.document.querySelector("#logout-btn").style.display = "none";
-    window.document.querySelector("#goToLogin-btn").style.display = "inline-block";
-    window.document.querySelector("#goToReg-btn").style.display = "inline-block";
+    document.querySelector("#logout-btn").style.display = "none";
+    document.querySelector("#goToLogin-btn").style.display = "inline-block";
+    document.querySelector("#goToReg-btn").style.display = "inline-block";
   }
   function isTocken(){
     if(localStorage.getItem("userToken")){
-      window.document.querySelector("#logout-btn").style.display = "inline-block";
-      window.document.querySelector("#goToLogin-btn").style.display = "none";
-      window.document.querySelector("#goToReg-btn").style.display = "none";
+      document.querySelector("#logout-btn").style.display = "inline-block";
+      document.querySelector("#goToLogin-btn").style.display = "none";
+      document.querySelector("#goToReg-btn").style.display = "none";
     } else {
-      window.document.querySelector("#logout-btn").style.display = "none";
-      window.document.querySelector("#goToLogin-btn").style.display = "inline-block";
-      window.document.querySelector("#goToReg-btn").style.display = "inline-block";
+      document.querySelector("#logout-btn").style.display = "none";
+      document.querySelector("#goToLogin-btn").style.display = "inline-block";
+      document.querySelector("#goToReg-btn").style.display = "inline-block";
     }
   }
   isTocken();
