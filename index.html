@@ -19,7 +19,7 @@
             <ul>
                 <li onclick="goToHome()"><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
+                <li onclick="goToHome()"><a href="#">Services</a></li>
                 <li><a href="#">Gallery</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Pages</a></li>
@@ -66,7 +66,7 @@
                     <div class="close-modal" onclick="onCloseModal()">&#9747</div>
                     <h5>Service</h5>
                     <ul class="order-list"></ul>
-                    <button type="button" class="btn btn-danger reg-btn" onclick="onOrder()">ORDER NOW</button>
+                    <button type="button" class="btn btn-danger reg-btn" id="orderbtn" onclick="onOrder()">ORDER NOW</button>
                     <p class="success">Success!</p>
                 </form>
             </div>

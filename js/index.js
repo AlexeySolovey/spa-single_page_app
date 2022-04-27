@@ -1,6 +1,7 @@
 let services = [];
 
-const signin = document.querySelector('.reg-block');
+const loginReg = document.querySelector('.reg-block');
+const logForm = document.querySelector(".login-form");
 const main = document.querySelector('main');
 const header = document.querySelector('header');
 const modalService = document.querySelector('.modal-service');
@@ -10,13 +11,14 @@ const inputDate = document.querySelector('input[type=date]');
 const inputTime = document.querySelector('input[type=time]');
 const onModalError = document.querySelector('p.onError');
 const onModalSuccess = document.querySelectorAll('p.success');
-var selectedService = {title: null, date: null, time: null};
+const orderBtn = document.querySelector('#orderbtn');
+var selectedService = {title: null, date: null, time: null, img: null};
 var isEmpty = true;
 let selectedServices = [];
 
 //Get data from json
 async function getResource () {
-    let res = await fetch('./data.json');
+    let res = await fetch('http://localhost:3000/products');
     
     if (!res.ok) {
         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
@@ -28,7 +30,7 @@ async function getResource () {
 //After getting data, push items to services array
 getResource()
 .then(res => {
-    res.map(el => services.push(el))
+    res.products.map(el => services.push(el))
 })
 //Create items array
 .then (() => {
@@ -38,13 +40,16 @@ getResource()
             let item = document.createElement('div');
             item.classList.add('service');
             item.classList.add('col-3');
+            item.classList.add('col-xl-3');
+            item.classList.add('col-md-5');
+            item.classList.add('col-11');
             item.setAttribute('id', i);
 
             item.innerHTML = `
             <div class="img"><img src=${el.img} alt=""></div>
             <h5>${el.title}</h5>
             <p>${el.desc}</p>
-            <button onclick="onBook('${el.title}')" class="btn btn-primary">Book</button>
+            <button onclick="onBook('${el.title}','${el.img}')" class="btn btn-primary">Book</button>
         `;
         items.push(item);
         });
@@ -57,19 +62,19 @@ getResource()
     items.map(el => {parent.append(el)});
 })
 
-////////////////////////////////////////////////
-// localStorage.setItem('email', 'mylogin@gmail');
 
 //Function relates to main page.
-function onBook (title) {
-    if (localStorage.getItem('email') === null){
-        signin.style.display = 'block';
+function onBook (title, img) {
+    if (localStorage.getItem('userToken') === null){
+        loginReg.style.display = 'block';
+        logForm.style.display = 'block';
         main.style.display = 'none';
         header.style.display = 'none';
     }
     else {
         modalService.style.display = 'block';
         selectedService.title = title; // set title of service into the object
+        selectedService.img = img; // set img of service into the object
     }
 }
 
@@ -92,13 +97,13 @@ function onBookInModal () {
         selectedServices.push(selectedService); // push selected service to array
         localStorage.setItem('orderArr', JSON.stringify(selectedServices)); // set localstorage from array
         selectedService = {};
-
-        onModalSuccess[0].style.display = 'block';
-        setTimeout(() => {onModalSuccess[0].style.display = 'none'; onCloseModal();}, 3000);
+        inputDate.value = null;
+        inputTime.value = null;
+        onCloseModal();
     }
     else {
         onModalError.style.display = 'block';
-        setTimeout(() => onModalError.style.display = 'none', 3000);
+        setTimeout(() => onModalError.style.display = 'none', 3000)
     }
 }
 
@@ -111,22 +116,38 @@ function onBasketOpen () {
     let parent = document.querySelector('ul.order-list');
     parent.innerHTML = '';
 
-    if (basketArr !== null) {
-        isEmpty = false;
-        basketArr.map (el => {
-            let item = document.createElement('div');
-            item.classList.add('basket-item');
-            item.innerHTML = `Service = ${el.title}, date = ${el.date}, time = ${el.time}`;
-            basketItems.push(item);
+    if (localStorage.getItem('userToken') !== null) {
+        orderBtn.style.display = 'block';
+        if (basketArr !== null) {
+            isEmpty = false;
+            basketArr.map (el => {
+                let item = document.createElement('li');
+                item.classList.add('basket-item');
+
+                item.innerHTML = `
+                    <div class="img-bl"><img src="${el.img}" alt=""></div>
+                    <div class="text">
+                        <div class="title">${el.title}</div>
+                        <div class="date">${el.date} || ${el.time}</div>
+                    </div>  
+                `;
+                basketItems.push(item);
+                parent.append(item);
+            })
+        } else {
+            let item = document.createElement ('li');
+            item.classList.add('empty');
+            item.innerHTML = 'The basket is empty';
             parent.append(item);
-        })
+        }
     } else {
-        let item = document.createElement ('li');
+        let item = document.createElement ('div');
         item.classList.add('empty');
-        item.innerHTML = 'The basket is empty';
+        item.innerHTML = 'You are not logged in. Please Log In';
+        orderBtn.style.display = 'none';
         parent.append(item);
-        // return;
     }
+    
 }
 
 //When user orders from basket modal
