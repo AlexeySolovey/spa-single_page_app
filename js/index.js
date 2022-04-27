@@ -11,6 +11,8 @@ const inputDate = document.querySelector('input[type=date]');
 const inputTime = document.querySelector('input[type=time]');
 const onModalError = document.querySelector('p.onError');
 const onModalSuccess = document.querySelectorAll('p.success');
+const orderBtn = document.querySelector('#orderbtn');
+
 var selectedService = {title: null, date: null, time: null, img: null};
 var isEmpty = true;
 let selectedServices = [];
@@ -116,6 +118,7 @@ function onBasketOpen () {
     parent.innerHTML = '';
 
     if (localStorage.getItem('userToken') !== null) {
+        orderBtn.style.display = 'block';
         if (basketArr !== null) {
             isEmpty = false;
             basketArr.map (el => {
@@ -140,9 +143,10 @@ function onBasketOpen () {
         }
     } else {
         let item = document.createElement ('div');
-            item.classList.add('empty');
-            item.innerHTML = 'You are not logged in. Please Log In';
-            parent.append(item);
+        item.classList.add('empty');
+        item.innerHTML = 'You are not logged in. Please Log In';
+        orderBtn.style.display = 'none';
+        parent.append(item);
     }
     
 }
