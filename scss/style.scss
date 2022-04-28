@@ -14,8 +14,6 @@ header {
     padding: 30px 50px;
     display: flex;
     justify-content: space-between;
-    // display: none;
-
 
     .logo {width: 150px; img {width: 100%}}
     .basket {
@@ -57,7 +55,6 @@ header {
 
 main {
     .img-block {
-        // @extend %container;
         background: url('../resources/beauty-bg.png') center center/cover no-repeat;
         display: flex;
         align-items: center;
@@ -147,7 +144,6 @@ main {
 
     .modal-basket {
         @extend %modal;
-        ///////////////
         display: none;
 
         .wrapper form {
@@ -158,9 +154,25 @@ main {
             .close-modal {color: black; font-size: 20px; text-align: end; cursor: pointer;}
             h5 {text-align: center; font-size: 22px; margin-bottom: 30px;}
             .empty {color: $main-grey; list-style: none; text-align: center;}
-            .basket-item {color: $main-black; list-style: none; text-align: center; margin-bottom: 10px;}
             button { margin-top: 20px;}
-            p {text-align: center; font-size: 16px; margin: 10px 0; display: none;}
+            & > p {text-align: center; font-size: 16px; margin: 10px 0; display: none;}
+            .basket-item {
+                color: $main-black; 
+                list-style: none; 
+                text-align: center; 
+                border-bottom: 1px solid black;
+                margin-bottom: 10px;
+                padding: 10px 0;
+                display: flex;
+                justify-content: space-between;
+                .img-bl {width: 7%; img{width: 100%}}
+                .text {
+                    text-align: left;
+                    width: 80%; 
+                    .title {font-weight: 700}
+                }
+                &:last-of-type {border: none}
+            }
         }
     }
 }
