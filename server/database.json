@@ -1,4 +1,3 @@
-
 {"users":[],"products":[
     {"id": "1","img": "./resources/makeup.svg","title":"Makeup","desc":"Our makeup experts will have you looking your best in less than 30 minutes."},
     {"id": "2","img": "./resources/haircut.svg","title":"Haircut & Styling","desc":"Improve your look with our professional haircut & hairstyling services."},
